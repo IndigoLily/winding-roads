@@ -86,12 +86,14 @@ function draw() {
     }
     ctx.globalCompositeOperation = 'source-over';
 
+    const middle_slope = ((cnv.height/4)/min)/cam.foclen; // used to find 3d coordinates that put an object halfway between the middle and top of the screen
+    const base_x = 30;
     let between = new Path2D();
     const width = 0.08;
     for (let i = -7; i <= 7; i++) {
-        const x = wobble(t*3 + 1000 + i*1000) / speeds.length * 4 + 30;
+        const x = wobble(t*3 + 1000 + i*1000) / speeds.length * 4 + base_x;
         const y = i*3;
-        const z = wobble(t*3 + 3000 + i*1000) / speeds.length * 1 + cam.z * 4/3;
+        const z = wobble(t*3 + 3000 + i*1000) / speeds.length * 1 + cam.z + base_x * middle_slope;
 
         ctx.beginPath();
         ctx.arc(...cam.project(x,y,z), cam.project_radius(2/7, x), 0, Math.PI*2);
