@@ -1,0 +1,9 @@
+body {
+    margin: 0;
+}
+
+html {
+    overflow: hidden;
+    background-color: #000000;
+    cursor: none;
+}
